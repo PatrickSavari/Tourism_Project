@@ -1,4 +1,6 @@
 import os
+from huggingface_hub import HfApi
+
 # Only import userdata if running in Colab to avoid errors in other environments
 try:
     from google.colab import userdata
