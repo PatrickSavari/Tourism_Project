@@ -148,24 +148,24 @@ if st.button("Predict Purchase"):
 
     try:
         prediction = model.predict(processed_input_df)
-        # Attempt to get probability from the pyfunc model first
-        try:
-            probability = model.predict_proba(processed_input_df)[:, 1]
-        except AttributeError:
-            # If predict_proba is not directly available, load the raw sklearn model for it
-            st.warning("mlflow.pyfunc model does not have 'predict_proba'. Attempting to load raw sklearn model.")
-            raw_sklearn_model_path = os.path.join(model_path, "model.pkl")
-            if os.path.exists(raw_sklearn_model_path):
-                raw_model = joblib.load(raw_sklearn_model_path)
-                probability = raw_model.predict_proba(processed_input_df)[:, 1]
-            else:
-                st.error(f"Failed to find raw sklearn model at {raw_sklearn_model_path}.")
-                probability = np.array([0.5]) # Default to 0.5 if probability cannot be determined
+        # # Attempt to get probability from the pyfunc model first
+        # try:
+        #     probability = model.predict_proba(processed_input_df)[:, 1]
+        # except AttributeError:
+        #     # If predict_proba is not directly available, load the raw sklearn model for it
+        #     st.warning("mlflow.pyfunc model does not have 'predict_proba'. Attempting to load raw sklearn model.")
+        #     raw_sklearn_model_path = os.path.join(model_path, "model.pkl")
+        #     if os.path.exists(raw_sklearn_model_path):
+        #         raw_model = joblib.load(raw_sklearn_model_path)
+        #         probability = raw_model.predict_proba(processed_input_df)[:, 1]
+        #     else:
+        #         st.error(f"Failed to find raw sklearn model at {raw_sklearn_model_path}.")
+        #         probability = np.array([0.5]) # Default to 0.5 if probability cannot be determined
 
         if prediction[0] == 1:
-            st.success(f"Prediction: This customer is LIKELY to purchase the package (Probability: {probability[0]:.2f})")
+            st.success(f"Prediction: This customer is LIKELY to purchase the package")
         else:
-            st.info(f"Prediction: This customer is UNLIKELY to purchase the package (Probability: {probability[0]:.2f})")
+            st.info(f"Prediction: This customer is UNLIKELY to purchase the package")
 
     except Exception as e:
         st.error(f"An error occurred during prediction: {e}")
