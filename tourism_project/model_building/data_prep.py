@@ -99,7 +99,9 @@ api.upload_file(
     token=HF_TOKEN,
     commit_message="Add train.csv dataset"
 )
+print("----------------------------------------------------------------------------------------------------------")
 print(f"'train.csv' uploaded to Hugging Face dataset: https://huggingface.co/datasets/{TARGET_HF_REPO_ID}/blob/main/train.csv")
+print("----------------------------------------------------------------------------------------------------------")
 
 # Upload test.csv to Hugging Face Hub
 api.upload_file(
@@ -110,4 +112,6 @@ api.upload_file(
     token=HF_TOKEN,
     commit_message="Add test.csv dataset"
 )
+print("----------------------------------------------------------------------------------------------------------")
 print(f"'test.csv' uploaded to Hugging Face dataset: https://huggingface.co/datasets/{TARGET_HF_REPO_ID}/blob/main/test.csv")
+print("----------------------------------------------------------------------------------------------------------")

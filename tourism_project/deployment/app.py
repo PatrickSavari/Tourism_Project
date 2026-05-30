@@ -7,26 +7,26 @@ import os
 import joblib
 from huggingface_hub import HfApi, snapshot_download # Import HfApi and snapshot_download
 
-# Only import userdata if running in Colab to avoid errors in other environments
-try:
-    from google.colab import userdata
-    IS_COLAB = True
-except ImportError:
-    IS_COLAB = False
+# # Only import userdata if running in Colab to avoid errors in other environments
+# try:
+#     from google.colab import userdata
+#     IS_COLAB = True
+# except ImportError:
+#     IS_COLAB = False
 
-# Get Hugging Face token securely
-if IS_COLAB:
-    HF_TOKEN = userdata.get('HF_TOKEN')
-else:
-    HF_TOKEN = os.environ.get('HF_TOKEN')
+# # Get Hugging Face token securely
+# if IS_COLAB:
+#     HF_TOKEN = userdata.get('HF_TOKEN')
+# else:
+#     HF_TOKEN = os.environ.get('HF_TOKEN')
 
-if not HF_TOKEN:
-    # This might happen if running locally without the token set.
-    # For a Streamlit app deployed on HF Spaces, the HF_TOKEN is usually
-    # automatically available as an environment variable, so this check
-    # is mostly for local development.
-    st.warning("HF_TOKEN not found. Model download might fail if the repo is private.")
-    HF_TOKEN = None # Set to None if not found
+# if not HF_TOKEN:
+#     # This might happen if running locally without the token set.
+#     # For a Streamlit app deployed on HF Spaces, the HF_TOKEN is usually
+#     # automatically available as an environment variable, so this check
+#     # is mostly for local development.
+#     st.warning("HF_TOKEN not found. Model download might fail if the repo is private.")
+#     HF_TOKEN = None # Set to None if not found
 
 # Define model repo variables (consistent with model_training.py)
 HUGGINGFACE_USERNAME = "PatrickSavari"
@@ -41,7 +41,7 @@ try:
     snapshot_download(
         repo_id=HF_MODEL_REPO_ID,
         local_dir=LOCAL_MODEL_DOWNLOAD_PATH,
-        token=HF_TOKEN # Use the securely obtained token
+        #token=HF_TOKEN # Use the securely obtained token
     )
     st.success(f"Model and preprocessors downloaded from Hugging Face Model Hub to {LOCAL_MODEL_DOWNLOAD_PATH}")
 except Exception as e:

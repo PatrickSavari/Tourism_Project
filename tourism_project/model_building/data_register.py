@@ -49,4 +49,6 @@ api.upload_file(
     commit_message="Add tourism.csv dataset"
 )
 
+print("----------------------------------------------------------------------------------------------------------")
 print(f"'{PATH_IN_HF_REPO}' uploaded to Hugging Face dataset: https://huggingface.co/datasets/{TARGET_HF_REPO_ID}")
+print("----------------------------------------------------------------------------------------------------------")

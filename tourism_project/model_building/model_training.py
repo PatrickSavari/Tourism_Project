@@ -205,7 +205,9 @@ with mlflow.start_run(run_name="XGBoost_Training_Run") as run:
         commit_message=f"Add XGBoostTourismClassifier v{latest_version}"
     )
 
+    print("----------------------------------------------------------------------------------------------------------")
     print(f"Model 'XGBoostTourismClassifier' (version {latest_version}) uploaded to Hugging Face: https://huggingface.co/models/{HF_MODEL_REPO_ID}")
+    print("----------------------------------------------------------------------------------------------------------")
 
     # Clean up the temporary local MLflow artifact build directory and download directory
     shutil.rmtree(temp_mlflow_artifact_root)
